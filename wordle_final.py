@@ -28,7 +28,9 @@ def checkguess(window,value,word,attempt): #function to check if entered word is
 
 
     if(boxcolour == [green,green,green,green,green,green]):
-        return True    
+        return True  
+    else:
+        return False      
 
 width=500
 height=600
@@ -57,10 +59,9 @@ for i in range(5):
 while (run):
 
     for event in pygame.event.get():
-        if(attempt <= 6):
-            if(event.type == pygame.QUIT):
+        if(event.type == pygame.QUIT):
                 run=False
-
+        if(attempt < 5 and win == False):
             if(event.type == pygame.KEYDOWN):
                 x=event.unicode
                 val=val+ x.upper()              
@@ -91,5 +92,3 @@ while (run):
     window.blit(guess,(170,450))             
     pygame.display.update()
     clock.tick(FPS)
-
-
