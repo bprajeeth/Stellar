@@ -16,15 +16,16 @@ def checkguess(window,value,word,attempt): #function to check if entered word is
     boxcolour=[white,white,white,white,white,white]
     for i in range(6):
         if(val[i] == word_list[i]):
-            boxcolour[i]=green
-        elif(val[i] != word_list[i] and val[i] in word_list):
+            boxcolour[i]=green   
+            word_list[i]=0
+    for i in range(6):
+        if(val[i] in word_list):
             boxcolour[i]=yellow
-        else:
-            boxcolour[i]=grey    
-        if(val[i] in word_list):    
             position=word_list.index(val[i])    
-            word_list[position]=0       
-            
+            word_list[position]=0
+        elif(boxcolour[i] != green):
+            boxcolour[i]=grey                        
+
     for i in range(6):
         displetter=font.render(val[i],True,black)
         pygame.draw.rect(window,boxcolour[i],pygame.Rect(45+(i*10+i*60),50+(attempt*(15+60)),60,60))
@@ -81,7 +82,7 @@ while (run):
                     val=val[:-2]+val[-1]   
 
                 if((event.key == pygame.K_RETURN) and len(val)>6):
-                    #print(val)
+                    print(val)
                     if(val[:6]+"\n" in wordlist):
                         wordpresent=1
                         win=checkguess(window,val,word,attempt)    
@@ -113,3 +114,5 @@ while (run):
     window.blit(guess,(x,450))             
     pygame.display.update()
     clock.tick(FPS)
+
+    
