@@ -1,4 +1,5 @@
 import random
+from tkinter import CENTER
 import pygame
 
 pygame.init()
@@ -41,7 +42,7 @@ width=500
 height=600
 lossmessage="Better Luck Next Time!"
 winmessage="TO INFINITY AND BEYOND!"
-f=open("stellarwords.txt","r")
+f=open("stellar_words.txt","r")
 wordlist=f.readlines()
 word=wordlist[random.randint(0,len(wordlist)-1)].upper()
 #print(wordlist)
@@ -56,10 +57,11 @@ wordpresent=1
 FPS=30
 clock=pygame.time.Clock()
 font = pygame.font.SysFont("arial", 35) 
-font2 = pygame.font.SysFont("arial",30)
+font2 = pygame.font.SysFont("comicsansms",35)
 attempt=0
-title=font2.render("Stellar",True,(255,69,0))
-window.blit(title,(182,8))
+title=font2.render("STELLAR",True,(255,69,0))
+title_rect=title.get_rect(center=(width/2 ,20))
+window.blit(title,title_rect)
 for i in range(5):
     for j in range(6):
         pygame.draw.rect(window,white,pygame.Rect(45+(j*10+j*60),50+(i*(15+60)),60,60))
@@ -115,4 +117,3 @@ while (run):
     pygame.display.update()
     clock.tick(FPS)
 
-    
